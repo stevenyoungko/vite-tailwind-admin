@@ -23,8 +23,18 @@ const count = ref(0)
       Vite Documentation
     </a>
     |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
+    <a href="https://v3.vuejs.org/" target="_blank" class="link">Vue 3 Documentation</a>
   </p>
+
+  <div class="card">
+    <p>
+      <a href="https://vitejs.dev/guide/features.html" target="_blank">
+        Vite Documentation
+      </a>
+      |
+      <a href="https://v3.vuejs.org/" target="_blank" class="link">Vue 3 Documentation</a>
+    </p>
+  </div>
 
   <button type="button" @click="count++">count is: {{ count }}</button>
   <p>
@@ -34,7 +44,4 @@ const count = ref(0)
 </template>
 
 <style scoped>
-a {
-  color: #42b983;
-}
 </style>
