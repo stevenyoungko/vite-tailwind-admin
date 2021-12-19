@@ -18,22 +18,15 @@
       <div class="flex-grow sm:flex sm:flex-col sm:justify-between" :class="showMenu ? '' : 'hidden'">
         <!-- 主要選單 -->
         <ul>
-          <li>
-            <Router-link to="/" class="flex items-center px-4 sm:px-5 py-3 text-white" >
-              <heroicons-outline-home class="w-5 h-5 mr-2" />
-              首頁
-            </Router-link>
-          </li>
-          <li>
-            <Router-link to="/" class="flex items-center px-4 sm:px-5 py-3 text-violet-400 hover:text-white" >
-              <heroicons-outline-document-text class="w-5 h-5 mr-2" />
-              文章
-            </Router-link>
-          </li>
-          <li>
-            <Router-link to="/" class="flex items-center px-4 sm:px-5 py-3 text-violet-400 hover:text-white" >
-              <heroicons-outline-user class="w-5 h-5 mr-2" />
-              個人資料
+          <li v-for="item in menuItems" :key="item.to">
+            <Router-link 
+              :to="item.to" 
+              class="flex items-center px-4 sm:px-5 py-3"
+              :class="isActive(item.to) ? '' : 'text-violet-400 hover:text-white'"
+            >
+              <!-- <heroicons-outline-home  /> -->
+              <component :is="item.icon" class="w-5 h-5 mr-2" />
+              {{ item.text }}
             </Router-link>
           </li>
         </ul>
@@ -75,13 +68,35 @@
 </template>
 
 <script>
+import HeroiconsOutlineHome from '~icons/heroicons-outline/home'
+import HeroiconsOutlineDocumentText from '~icons/heroicons-outline/document-text'
+import HeroiconsOutlineUser from '~icons/heroicons-outline/user'
+import { useRoute } from 'vue-router'
+import { computed } from '@vue/reactivity'
+
 export default {
+  components: {
+    HeroiconsOutlineHome,
+    HeroiconsOutlineDocumentText,
+    HeroiconsOutlineUser
+  },
   setup() {
+    const route = useRoute()
     const showMenu = ref(false)
+    const menuItems = [
+      { to: '/', text: '首頁', icon: 'heroicons-outline-home' },
+      { to: '/posts', text: '文章', icon: 'heroicons-outline-document-text' },
+      { to: '/setting', text: '個人資料', icon: 'heroicons-outline-user' }
+    ]
+    const activeItem = computed(() =>
+      [...menuItems].reverse().find(item => route.path.startsWith(item.to)) 
+    )
 
     const toggleMenu = () => showMenu.value = !showMenu.value
+    const isActive = to => to === activeItem.value.to
 
-    return { showMenu, toggleMenu }
+
+    return { showMenu, toggleMenu, menuItems, isActive }
   },
 };
 </script>
