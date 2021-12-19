@@ -4,6 +4,7 @@ import path from 'path'
 import Pages from "vite-plugin-pages"
 import IconsResolver from 'unplugin-icons/resolver'
 import Components from 'unplugin-vue-components/vite'
+import {HeadlessUiResolver } from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 
@@ -19,10 +20,13 @@ export default defineConfig({
     vue(),
     Pages(),
     Components({
-      resolvers: IconsResolver({
-        prefix: false,
-        enabledCollections: ['heroicons-outline']
-      })
+      resolvers: [
+        IconsResolver({
+          prefix: false,
+          enabledCollections: ['heroicons-outline']
+        }),
+        HeadlessUiResolver()
+      ]
     }),
     Icons(),
     AutoImport({

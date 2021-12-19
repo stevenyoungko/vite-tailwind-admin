@@ -8,9 +8,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        'gray': colors.zinc
-      },
       fontFamily: {
         'sans': ['Noto Sans TC', ...fontFamily.sans]
       }
