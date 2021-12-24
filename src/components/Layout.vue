@@ -97,6 +97,7 @@
 
     <!-- 右側佈局區 -->
     <div class="flex-grow min-w-0">
+      <slot />  
     </div>
   </div>
 </template>
