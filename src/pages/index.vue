@@ -1,30 +1,25 @@
 <template>
   <Layout>
     <div class="p-4 space-y-4">
-      <div class="space-x-4">
-         <PrimaryButton disabled>
-          主要按鈕
-        </PrimaryButton>
+      <div>
+        <input type="text" class="form-input">
+      </div>
 
-        <PrimaryButton to="/">
-          主要按鈕
-        </PrimaryButton>
-      </div>
       <div>
-        <SecondaryButton disabled>
-          次要按鈕
-        </SecondaryButton>
+        <textarea type="text" class="form-textarea"></textarea>
       </div>
-      <div>
-         <DangerButton disabled>
-          刪除帳號
-        </DangerButton>
-      </div>
+
+      <label>
+        <input type="radio">單選框
+      </label>
+
+      <label>
+        <input type="checkbox">多選框
+      </label>
     </div>
   </Layout>
 </template>
 
 <script>
-import SecondaryButton from '@/components/SecondaryButton.vue';
 
 </script>
