@@ -5,7 +5,7 @@
     :to="to"
     class="btn text-white bg-violet-500 hover:bg-violet-600  focus:ring-violet-500 disabled:bg-violet-400"
   >
-    <slot></slot>
+    <slot>主要按鈕</slot>
   </component>
 </template>
 
