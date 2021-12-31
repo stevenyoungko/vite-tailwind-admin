@@ -1,39 +1,24 @@
 <template>
   <Layout>
     <div class="p-4">
-      <PrimaryButton @click="showModal = true">開啟視窗</PrimaryButton>
-
-      <!-- <Modal v-model="showModal">
-        <template #title>嗨囉 我是標題</template>
-        <template #content>
-          <div class="mt-6">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis excepturi cum porro, vitae perspiciatis vero deleniti voluptatum fuga. Quia fugit excepturi quidem architecto ratione inventore commodi voluptatum ipsam expedita eum.
-          </div>
-        </template>
-      </Modal> -->
-
-      <ConfirmModal 
-        v-model="showModal" 
-        title="確定要刪除文章嗎？"
-        @success="success"
-        @cancel="cancel" 
-      />
+      <DangerButton @click="deletePost">刪除</DangerButton>
     </div>
   </Layout>
 </template>
 
 <script>
+import { useConfirm } from '@/composables/useConfirmModal'
 export default {
   setup() {
-    const showModal = ref(false)
-    const success = () => {
-      console.log('success')
+    const deletePost = () => {
+      useConfirm('確定要刪除嗎？').then(result => {
+        console.log(result)
+        if (result) {
+          console.log('刪除成功!')
+        }
+      })
     }
-    const cancel = () => {
-      console.log('cancel')
-    }
-
-    return { showModal, success, cancel }
+    return { deletePost }
   }
 }
 

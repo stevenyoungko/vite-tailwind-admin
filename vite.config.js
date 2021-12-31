@@ -20,6 +20,10 @@ export default defineConfig({
     vue(),
     Pages(),
     Components({
+      dirs: [
+        'src/components',
+        'src/sections'
+      ],
       resolvers: [
         IconsResolver({
           prefix: false,

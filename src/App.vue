@@ -1,5 +1,6 @@
 <template>
-  <RouterView></RouterView>  
+  <RouterView></RouterView>
+  <AppConfirmModal />
 </template>
 
 
