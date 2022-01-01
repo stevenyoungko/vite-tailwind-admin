@@ -9,7 +9,7 @@
 
 <script>
 import { useConfirm } from '@/composables/useConfirmModal'
-import { notify } from "@kyvg/vue3-notification"
+import { notify, successNotify, errorNotify, warningNotify } from '@/composables/useNotification'
 
 export default {
   setup() {
@@ -23,14 +23,7 @@ export default {
     }
 
     const open = () => {
-      notify({
-        // type: 'success',
-        // type: 'warn',
-        // type: 'error',
-        title: '更新成功',
-        text: '已經更新成功了',
-        duration: 100000
-      })
+      errorNotify('更新成功')
     }
     return { deletePost, open }
   }
