@@ -12,7 +12,7 @@
 
   .form-radio,
   .form-checkbox {
-    @apply form-radio text-violet-600 border-gray-400 focus:ring-violet-600;
+    @apply text-violet-600 border-gray-400 focus:ring-violet-600;
   }
   .form-checkbox {
     @apply rounded;

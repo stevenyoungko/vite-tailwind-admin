@@ -96,8 +96,8 @@
     </div>
 
     <!-- 右側佈局區 -->
-    <div class="flex-grow min-w-0">
-      <slot />  
+    <div class="flex-grow min-w-0 p-6 sm:px-10 sm:py-8 bg-gray-50">
+      <slot />
     </div>
   </div>
 </template>
