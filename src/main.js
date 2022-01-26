@@ -1,8 +1,9 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-import routes from "~pages";
+import routes from "~pages"
 import App from './App.vue'
 import './styles/index.css'
+import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 import Notifications from '@kyvg/vue3-notification'
 
 

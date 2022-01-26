@@ -46,6 +46,10 @@
       </tbody>
     </table>
   </div>
+  <Paginator 
+    v-model:current-page="currentPage" 
+    :total-page="totalPage"
+  />
 </template>
 
 <script>
@@ -74,7 +78,14 @@ export default {
       return props.columns.length + 2
     })
 
-    return { columnsCount }
+    const currentPage = ref(1)
+    const totalPage = ref(10)
+
+    return { 
+      columnsCount,
+      currentPage,
+      totalPage
+    }
   }
 }
 </script>
