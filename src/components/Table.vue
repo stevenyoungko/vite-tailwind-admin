@@ -34,8 +34,10 @@
               {{ record[col.key] }}
             </slot>  
           </td>
+          <td class="text-gray-600 px-5 py-3 whitespace-nowrap">
+            <slot name="actions" :record="record" :confirmDeleteText="confirmDeleteText"></slot>
+          </td>
         </tr>
-
         <tr v-if="!data.length">
           <td :colspan="columnsCount" class="py-12 text-center text-gray-400">
             {{ emptyText }}
@@ -61,6 +63,10 @@ export default {
     emptyText: {
       type: String,
       default: '當前沒有任何資料'
+    },
+    confirmDeleteText: {
+      type: String,
+      default: '確定要執行刪除嗎？~~'
     }
   },
   setup(props) {
