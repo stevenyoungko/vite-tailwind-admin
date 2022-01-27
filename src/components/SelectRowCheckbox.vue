@@ -11,11 +11,12 @@
 export default {
   emits: ['update:state'],
   props: {
-    state: Boolean
+    state: Boolean,
+    index: Number
   },
   setup (props, { emit }) {
     const updateState = event => {
-      emit('update:state', event.target.checked)
+      emit('update:state', event.target.checked, props.index)
     }
 
     return { updateState }

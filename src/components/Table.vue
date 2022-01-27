@@ -4,7 +4,10 @@
       <thead>
         <tr class="border-b border-gray-200">
           <th class="text-left pl-5 py-3">
-            <SelectAllCheckbox v-model:state="selectAllState" />
+            <SelectAllCheckbox 
+              :state="selectAllState"
+              @update:state="updateSelectAllState"
+            />
           </th>
           <th
             v-for="col in columns"
@@ -22,7 +25,11 @@
           :class="{ 'bg-violet-50': rowSelectStatus[i] }"
         >
           <td class="text-gray-600 pl-5 py-3 whitespace-nowrap">
-            <SelectRowCheckbox v-model:state="rowSelectStatus[i]"/>
+            <SelectRowCheckbox 
+              :state="rowSelectStatus[i]"
+              :index="i"
+              @update:state="updateRowSelectStatus"
+            />
           </td>
           <td
             v-for="col in columns"
@@ -78,21 +85,50 @@ export default {
     }
   },
   setup(props) {
-    const columnsCount = computed(() => {
-      return props.columns.length + 2
-    })
-
     const currentPage = ref(1)
     const totalPage = ref(10)
     const selectAllState = ref('none')
     const rowSelectStatus = ref(props.data.map(_ => false))
+
+    const columnsCount = computed(() => {
+      return props.columns.length + 2
+    })
+    const seletedIds = computed(() => {
+      return props.data
+        .filter((_, index) => rowSelectStatus.value[index])
+        .map(record => record.id)
+    })
+
+    const updateSelectAllState = state => {
+      selectAllState.value = state
+
+      rowSelectStatus.value = rowSelectStatus.value.map(() => selectAllState.value === 'all')
+    }
+    const updateRowSelectStatus = (state, index) => {
+      rowSelectStatus.value[index] = state
+
+      // 當全部勾選時
+      if (seletedIds.value.length === props.data.length) {
+        selectAllState.value = 'all'
+      }
+      // 當部分勾選時
+      else if (seletedIds.value.length > 0 && seletedIds.value.length < props.data.length) {
+        selectAllState.value = 'some'
+      }
+      // 當沒有勾選時
+      else {
+        selectAllState.value = 'none'
+      }
+    }
 
     return { 
       columnsCount,
       currentPage,
       totalPage,
       rowSelectStatus,
-      selectAllState
+      selectAllState,
+      updateSelectAllState,
+      updateRowSelectStatus
     }
   }
 }
